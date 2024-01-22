@@ -1,4 +1,4 @@
-#!//usr/bin/python3
+#!/usr/bin/python3
 
 """function that returns a key with the biggest integer value"""
 
