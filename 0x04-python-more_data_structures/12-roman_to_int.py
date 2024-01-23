@@ -1,9 +1,6 @@
 #!/usr/python3
 
 def roman_to_int(roman_string):
-    if not isinstance(roman_string, str) or roman_string is None:
-        return 0
-
     roman_dict = {
             'I': 1,
             'V': 5,
@@ -14,11 +11,14 @@ def roman_to_int(roman_string):
             'M': 1000
     }
 
-    result = sum(
-            roman_dict[roaman_string[i]] if (i == len(roman_string) - 1 or
-            roman_dict[roman_string[i]] >= roman_dict[roman_string[i + 1]])
-            else -roman_dict[roman_string[i]]
-            for i in range(len(roman_string))
-        )
+    result = 0
+    prev_value = 0
 
+    if type(roman_string) is str and roman_string:
+        for c in range(len(roman_string) - 1, -1, -1):
+            if roman_dict[roman_string[c]] >= prev_value:
+                result += roman_dict[roman_string[c]]
+            else:
+                result -= roman_dict[roman_string[c]]
+            prev_value = roman_dict[roman_string[c]]
     return result
