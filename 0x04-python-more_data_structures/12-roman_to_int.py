@@ -14,15 +14,11 @@ def roman_to_int(roman_string):
             'M': 1000
     }
 
-    result = 0
-    prev_value = 0
-
-    for char in reversed(roman_string):
-        value = roman_dict[char]
-        if value < prev_value:
-            result -= value
-        else:
-            result += value
-        prev_value = value
+    result = sum(
+            roman_dict[roaman_string[i]] if (i == len(roman_string) - 1 or
+            roman_dict[roman_string[i]] >= roman_dict[roman_string[i + 1]])
+            else -roman_dict[roman_string[i]]
+            for i in range(len(roman_string))
+        )
 
     return result
